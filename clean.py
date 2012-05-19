@@ -66,6 +66,8 @@ if __name__=='__main__':
     writer = csv.writer(sys.stdout)
     reader = csv.reader(sys.stdin)
     rows=list(reader)
+    writer.writerow(rows[0])
+    rows=rows[1:]
     for row, procedure in zip(rows,
                               merge_similar([row[6].decode('utf8') for row in rows]) ):
         if len(row)<7 or len(filter(None,['x' if len(x.strip())>1 and x.strip()!='""' else None for x in row[:5]]))<5:
